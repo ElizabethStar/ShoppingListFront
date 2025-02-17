@@ -42,17 +42,17 @@ import axios from 'axios'
  
 </template>
 
-<style scoped>
+
+<style>
 
 
 h1{
   text-align: center;
 }
 
-button{
-  width: 100px;
-  height: 40px;
+button {
   border-radius: 7px;
+  padding: 10px;
 }
 
 
