@@ -11,7 +11,8 @@ import axios from 'axios'
         
         selectedDate:'',
         products: [],
-        addFlag: false
+        addFlag: false,
+        total: 0
       }
     },
     methods:{
@@ -37,7 +38,7 @@ import axios from 'axios'
 </script>
 
 <template>
-  <div className="main">
+  <div>
     <h1>Список покупок</h1>
     <div className="flexSpaceBetween">
       <div className="datePickerContainer">
@@ -47,13 +48,16 @@ import axios from 'axios'
           <input type="date" v-model="selectedDate" />
           <button @click="deleteDate()">Сбросить выбор даты</button>
       </div>
-      <button @click="openAddWindow()">Добавить новую запись</button>
+      <button className="add" @click="openAddWindow()">Добавить новую запись</button>
       <AddWindow v-show="addFlag" :closeAddWindow="closeAddWindow" :addProduct="addProduct"/>
     </div>
     <div className="productList">
       <p v-if="selectedDate!=''">Выбранная дата: {{ selectedDate }}</p>  
       <p v-else>Дата не выбрана</p>  
       <Product/> 
+    </div>
+    <div className="horizontalAlignCenter">
+      <p>Итоговая сумма: {{ total }}</p>
     </div>
   </div>
  
@@ -91,15 +95,23 @@ div.flexSpaceBetween{
 }
 
 .verticalAlignCenter{
-  height: auto;
   display: flex;
   align-content: center;
   flex-wrap: wrap;
 }
 
-.productList{
-  margin-top: 20px;
+.horizontalAlignCenter{
+  display: flex;
+  justify-content: center;
 }
 
+.productList{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div.center{
+  align-content: center;
+}
 
 </style>

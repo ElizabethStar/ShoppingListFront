@@ -26,7 +26,7 @@ div.newWindow{
 }
 
 button.delete{
-  background-color: red;
+  background-color: lightcoral;
   border: 2px, solid, darkred;
 
 }
@@ -39,4 +39,9 @@ button {
 p{
   font-size: large;
   font-weight:bold;
+}
+
+button.add{
+  background-color:lightgreen;
+  border-color: green;
 }

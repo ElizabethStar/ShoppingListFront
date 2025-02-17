@@ -8,7 +8,7 @@
             <input type="date" v-model="date">
         </div>
         <div>
-            <button @click="addProduct(); clearInput()">Добавить</button>
+            <button className="add" @click="addProduct(); clearInput()">Добавить</button>
             <button @click="closeAddWindow(); clearInput()">Отмена</button>
         </div>
 
