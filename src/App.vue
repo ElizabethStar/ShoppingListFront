@@ -1,8 +1,14 @@
 <script>
+
+
+import Product from './components/Product.vue'
+import axios from 'axios'
+
   export default{
     data(){
       return {
-        selectedDate:''
+        selectedDate:'',
+        products: []
       }
     },
     methods:{
@@ -10,6 +16,9 @@
       deleteDate(){
         this.selectedDate='';
       }
+    },
+    components:{
+      Product
     }
   }
 </script>
@@ -27,6 +36,7 @@
     <div className="productList">
       <p v-if="selectedDate!=''">Выбранная дата: {{ selectedDate }}</p>  
       <p v-else>Дата не выбрана</p>  
+      <Product/>
     </div>
   </div>
  
