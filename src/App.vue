@@ -60,17 +60,13 @@ import axios from 'axios'
 </template>
 
 
-<style>
+<style scoped>
 
 
 h1{
   text-align: center;
 }
 
-button {
-  border-radius: 7px;
-  padding: 10px;
-}
 
 div.flexSpaceBetween{
   margin-top: 50px;
@@ -99,11 +95,6 @@ div.flexSpaceBetween{
   display: flex;
   align-content: center;
   flex-wrap: wrap;
-}
-
-p{
-  font-size: large;
-  font-weight:bold;
 }
 
 .productList{

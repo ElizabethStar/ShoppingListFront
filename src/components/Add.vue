@@ -1,15 +1,15 @@
 <template>
     <div className="newWindow flexColumn">
-        <input type="text" placeholder="Введите имя"/>
-        <input type="number" placeholder="Введите количество"/>
-        <input type="number" placeholder="Введите цену">
+        <input type="text" placeholder="Введите имя" v-model="name"/>
+        <input type="number" placeholder="Введите количество" v-model="count"/>
+        <input type="number" placeholder="Введите цену" v-model="price">
         <div >
             <p>Введите Дату:</p>
-            <input type="date">
+            <input type="date" v-model="date">
         </div>
         <div>
-            <button @click="addProduct()">Добавить</button>
-            <button @click="closeAddWindow()">Отмена</button>
+            <button @click="addProduct(); clearInput()">Добавить</button>
+            <button @click="closeAddWindow(); clearInput()">Отмена</button>
         </div>
 
     </div>
@@ -17,6 +17,14 @@
 
 <script>
 export default{
+    data(){
+        return{
+            name: '',
+            count: null,
+            price: null,
+            date: ''
+        }
+    },
     props:{
         addProduct:{
             type: Function,
@@ -25,6 +33,14 @@ export default{
         closeAddWindow: {
             type: Function,
             required: true
+        }
+    },
+    methods:{
+        clearInput(){
+            this.name = '';
+            this.count = null;
+            this.price = null;
+            this.date = '';
         }
     }
 }

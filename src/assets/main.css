@@ -14,3 +14,29 @@ body{
 #app{
   width: 80%;
 }
+
+div.newWindow{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ border: solid, black;
+ background-color: aliceblue;
+ padding: 30px;
+}
+
+button.delete{
+  background-color: red;
+  border: 2px, solid, darkred;
+
+}
+
+button {
+  border-radius: 7px;
+  padding: 7px 15px;
+}
+
+p{
+  font-size: large;
+  font-weight:bold;
+}

@@ -5,7 +5,7 @@
             Название: {{ product.name }}; Количество: {{ product.numberOfPieces }}; Цена: {{ product.price }}; Дата: {{ product.date }}
         </p>
         <div className="buttons">
-            <button @click="deleteProduct()">Удалить</button>
+            <button className="delete" @click="deleteProduct()">Удалить</button>
             <button @click="closeDeleteWindow()">Отмена</button>
         </div>
     </div>
@@ -35,16 +35,10 @@ export default {
 }
 </script>
 
-<style >
+<style  scoped>
 
-div.newWindow{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-   border: solid, black;
-   background-color: aliceblue;
-   padding: 30px;
+button.delete{
+    margin-right: 10px;
 }
 
 </style>

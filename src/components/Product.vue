@@ -67,12 +67,6 @@ div.productContainer{
     
 }
 
-button.delete{
-    background-color: red;
-    border: 2px, solid, darkred;
-    padding: 7px 15px;
-
-}
 
 
 
