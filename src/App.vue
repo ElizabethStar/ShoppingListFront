@@ -1,7 +1,17 @@
-<script setup>
+<script>
+  export default{
+    data(){
+      return {
+        selectedDate:''
+      }
+    },
+    methods:{
 
-
-
+      deleteDate(){
+        this.selectedDate='';
+      }
+    }
+  }
 </script>
 
 <template>
@@ -11,11 +21,12 @@
         <div className="verticalAlignCenter">
           <p>Введите дату:</p>
         </div>
-        <input type="date"/>
-        <button>Выбрать дату</button>
-        <button>Сбросить выбор даты</button>
+        <input type="date" v-model="selectedDate" />
+        <button @click="deleteDate()">Сбросить выбор даты</button>
     </div>
     <div className="productList">
+      <p v-if="selectedDate!=''">Выбранная дата: {{ selectedDate }}</p>  
+      <p v-else>Дата не выбрана</p>  
     </div>
   </div>
  
@@ -63,6 +74,9 @@ p{
   font-weight:bold;
 }
 
+.productList{
+  margin-top: 20px;
+}
 
 
 </style>
