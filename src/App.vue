@@ -2,23 +2,36 @@
 
 
 import Product from './components/Product.vue'
+import AddWindow from './components/Add.vue'
 import axios from 'axios'
 
   export default{
     data(){
       return {
+        
         selectedDate:'',
-        products: []
+        products: [],
+        addFlag: false
       }
     },
     methods:{
 
       deleteDate(){
         this.selectedDate='';
+      },
+      openAddWindow(){
+        this.addFlag = true;
+      },
+      closeAddWindow(){
+        this.addFlag=false;
+      },
+      addProduct(){
+        this.addFlag=false;
       }
     },
     components:{
-      Product
+      Product,
+      AddWindow
     }
   }
 </script>
@@ -26,17 +39,21 @@ import axios from 'axios'
 <template>
   <div className="main">
     <h1>Список покупок</h1>
-    <div className="datePickerContainer">
-        <div className="verticalAlignCenter">
-          <p>Введите дату:</p>
-        </div>
-        <input type="date" v-model="selectedDate" />
-        <button @click="deleteDate()">Сбросить выбор даты</button>
+    <div className="flexSpaceBetween">
+      <div className="datePickerContainer">
+          <div className="verticalAlignCenter">
+            <p>Введите дату:</p>
+          </div>
+          <input type="date" v-model="selectedDate" />
+          <button @click="deleteDate()">Сбросить выбор даты</button>
+      </div>
+      <button @click="openAddWindow()">Добавить новую запись</button>
+      <AddWindow v-show="addFlag" :closeAddWindow="closeAddWindow" :addProduct="addProduct"/>
     </div>
     <div className="productList">
       <p v-if="selectedDate!=''">Выбранная дата: {{ selectedDate }}</p>  
       <p v-else>Дата не выбрана</p>  
-      <Product/>
+      <Product/> 
     </div>
   </div>
  
@@ -55,6 +72,12 @@ button {
   padding: 10px;
 }
 
+div.flexSpaceBetween{
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
 
 .datePickerContainer > div,
 .datePickerContainer > button,
@@ -64,7 +87,6 @@ button {
 }
 
 .datePickerContainer{
-  margin-top: 50px;
   display: flex;
   flex-direction: row;
   max-width: 2000px;

@@ -1,5 +1,5 @@
 <template>
-    <div className="delete">
+    <div className="newWindow">
         <h3>Вы точно хотите удалить запись?</h3>
         <p v-if="product!=null">
             Название: {{ product.name }}; Количество: {{ product.numberOfPieces }}; Цена: {{ product.price }}; Дата: {{ product.date }}
@@ -35,9 +35,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 
-div.delete{
+div.newWindow{
     position: fixed;
     top: 50%;
     left: 50%;
