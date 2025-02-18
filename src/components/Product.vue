@@ -15,27 +15,22 @@
 <script>
 import ProducrService from '../services/ProductService'
 import Delete from './Delete.vue'
-import axios from 'axios'
 
     export default{
         data(){
             return{
                 productForDelete: null,
                 deleteVisible: false,
-                products: []
             }
         },
         methods:{
-            getProducts(){
-                ProducrService.getProducts().then((response) => this.products=response.data);
-            },
             OpenDeleteWindow(product){
                 this.productForDelete=product;
                 this.deleteVisible=true;               
 
             },
             DeleteProduct(){
-                ProducrService.deleteProduct(this.productForDelete.id)
+                ProducrService.deleteProduct(this.productForDelete.id).then((response) => this.getProducts());;
                 this.deleteVisible=false;
                 this.productForDelete=null;
 
@@ -46,12 +41,18 @@ import axios from 'axios'
                 this.productForDelete=null;
             }
         },
-        created(){
-            this.getProducts()
-
-        },
         components:{
             Delete
+        },
+        props:{
+            products:{
+                type: Array,
+                required: true
+            },
+            getProducts: {
+                type: Function,
+                required: true
+            }
         }
     }
 </script>

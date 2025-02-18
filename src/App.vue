@@ -3,6 +3,7 @@
 
 import Product from './components/Product.vue'
 import AddWindow from './components/Add.vue'
+import ProducrService from './services/ProductService'
 
   export default{
     data(){
@@ -12,6 +13,8 @@ import AddWindow from './components/Add.vue'
         products: [],
         addFlag: false,
         total: 0
+
+
       }
     },
     methods:{
@@ -22,16 +25,20 @@ import AddWindow from './components/Add.vue'
       openAddWindow(){
         this.addFlag = true;
       },
-      closeAddWindow(){
+      closeAddWindow(){       
         this.addFlag=false;
       },
-      addProduct(){
-        this.addFlag=false;
+      getProducts(){
+        ProducrService.getProducts().then((response) => this.products=response.data);
       }
     },
     components:{
       Product,
       AddWindow
+    },
+    created(){
+      this.getProducts();
+
     }
   }
 </script>
@@ -48,12 +55,12 @@ import AddWindow from './components/Add.vue'
           <button @click="deleteDate()">Сбросить выбор даты</button>
       </div>
       <button className="add" @click="openAddWindow()">Добавить новую запись</button>
-      <AddWindow v-show="addFlag" :closeAddWindow="closeAddWindow" :addProduct="addProduct"/>
+      <AddWindow v-show="addFlag" :closeAddWindow="closeAddWindow" :getProducts="getProducts"/>
     </div>
     <div className="productList">
       <p v-if="selectedDate!=''">Выбранная дата: {{ selectedDate }}</p>  
       <p v-else>Дата не выбрана</p>  
-      <Product/> 
+      <Product :products="products" :getProducts="getProducts"/> 
     </div>
     <div className="horizontalAlignCenter">
       <p>Итоговая сумма: {{ total }}</p>

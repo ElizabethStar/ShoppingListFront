@@ -8,7 +8,7 @@
             <input type="date" v-model="date">
         </div>
         <div>
-            <button className="add" @click="addProduct(); clearInput()">Добавить</button>
+            <button className="add" @click="addProduct(), closeAddWindow(); clearInput();">Добавить</button>
             <button @click="closeAddWindow(); clearInput()">Отмена</button>
         </div>
 
@@ -16,21 +16,25 @@
 </template>
 
 <script>
+
+import ProducrService from '../services/ProductService'
+
 export default{
     data(){
         return{
             name: '',
             count: null,
             price: null,
-            date: ''
+            date: '',
+            product: null
         }
     },
     props:{
-        addProduct:{
+        closeAddWindow: {
             type: Function,
             required: true
         },
-        closeAddWindow: {
+        getProducts: {
             type: Function,
             required: true
         }
@@ -41,6 +45,16 @@ export default{
             this.count = null;
             this.price = null;
             this.date = '';
+        },
+        addProduct(){
+            this.product={
+                "name": this.name,
+                "numberOfPieces": this.count,
+                "price": this.price,
+                "date": this.date
+            };
+            ProducrService.addProduct(this.product).then((response) => this.getProducts());
+            
         }
     }
 }
