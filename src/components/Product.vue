@@ -15,6 +15,7 @@
 <script>
 import ProducrService from '../services/ProductService'
 import Delete from './Delete.vue'
+import axios from 'axios'
 
     export default{
         data(){
@@ -34,6 +35,7 @@ import Delete from './Delete.vue'
 
             },
             DeleteProduct(){
+                ProducrService.deleteProduct(this.productForDelete.id)
                 this.deleteVisible=false;
                 this.productForDelete=null;
 

@@ -6,6 +6,10 @@ class ProductService{
     getProducts(){
         return axios.get(PRODUCT_API_BASE_URL);
     }
+
+    deleteProduct(id){
+        return axios.delete(PRODUCT_API_BASE_URL+'/'+id)
+    }
 }
 
 

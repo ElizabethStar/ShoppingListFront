@@ -3,7 +3,6 @@
 
 import Product from './components/Product.vue'
 import AddWindow from './components/Add.vue'
-import axios from 'axios'
 
   export default{
     data(){
