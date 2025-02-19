@@ -12,7 +12,7 @@ import ProducrService from './services/ProductService'
         selectedDate: "",
         products: [],
         addFlag: false,
-        total: 0
+        totalsum: 0
 
 
       }
@@ -29,7 +29,7 @@ import ProducrService from './services/ProductService'
         this.addFlag=false;
       },
       getProducts(){
-        ProducrService.getProducts(this.selectedDate).then((response) => this.products=response.data);
+        ProducrService.getProducts(this.selectedDate).then((response) => {this.totalsum=response.data.total; this.products=response.data.productList});
       }
     },
     components:{
@@ -45,7 +45,7 @@ import ProducrService from './services/ProductService'
 
 <template>
   <div>
-    <h1>Список покупок</h1>
+    <h1>Список продуктов</h1>
     <div className="flexSpaceBetween">
       <div className="datePickerContainer">
           <div className="verticalAlignCenter">
@@ -63,7 +63,8 @@ import ProducrService from './services/ProductService'
       <Product :products="products" :getProducts="getProducts"/> 
     </div>
     <div className="horizontalAlignCenter">
-      <p>Итоговая сумма: {{ total }}</p>
+      <p v-if="products.length!=0">Итоговая сумма: {{ totalsum }}</p>
+      <p v-else>Нет продуктов в списке</p>
     </div>
   </div>
  
