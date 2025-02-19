@@ -7,8 +7,9 @@
             <p>Введите Дату:</p>
             <input type="date" v-model="date">
         </div>
+        <p className="error">{{ errorText }}</p>
         <div>
-            <button className="add" @click="addProduct(), closeAddWindow(); clearInput();">Добавить</button>
+            <button className="add" @click="addProduct();">Добавить</button>
             <button @click="closeAddWindow(); clearInput()">Отмена</button>
         </div>
 
@@ -26,7 +27,8 @@ export default{
             count: null,
             price: null,
             date: '',
-            product: null
+            product: null,
+            errorText:''
         }
     },
     props:{
@@ -41,19 +43,37 @@ export default{
     },
     methods:{
         clearInput(){
+            this.errorText='';
             this.name = '';
             this.count = null;
             this.price = null;
             this.date = '';
         },
         addProduct(){
-            this.product={
-                "name": this.name,
-                "numberOfPieces": this.count,
-                "price": this.price,
-                "date": this.date
-            };
-            ProducrService.addProduct(this.product).then((response) => this.getProducts());
+            if (this.name==''){
+                this.errorText='Введите название';
+            }
+            else if (this.count==null){
+                this.errorText='Введите количество';
+            }
+            else if (this.price==null){
+                this.errorText='Введите цену';
+            }
+            else if (this.date==''){
+                this.errorText='Введите дату';
+            }
+            else{
+                this.errorText='';
+                this.product={
+                    "name": this.name,
+                    "numberOfPieces": this.count,
+                    "price": this.price,
+                    "date": this.date
+                };
+                ProducrService.addProduct(this.product).then((response) => this.getProducts());
+                this.closeAddWindow();
+                this.clearInput();
+            }
             
         }
     }
@@ -80,5 +100,10 @@ p{
 
 button{
     margin: 0 5px;
+}
+
+.error{
+    color:red;
+    margin-top: 7px;
 }
 </style>

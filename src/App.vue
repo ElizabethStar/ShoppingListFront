@@ -13,8 +13,6 @@ import ProducrService from './services/ProductService'
         products: [],
         addFlag: false,
         totalsum: 0
-
-
       }
     },
     methods:{
