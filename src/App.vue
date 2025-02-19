@@ -9,7 +9,7 @@ import ProducrService from './services/ProductService'
     data(){
       return {
         
-        selectedDate:'',
+        selectedDate: "",
         products: [],
         addFlag: false,
         total: 0
@@ -20,7 +20,7 @@ import ProducrService from './services/ProductService'
     methods:{
 
       deleteDate(){
-        this.selectedDate='';
+        this.selectedDate="";
       },
       openAddWindow(){
         this.addFlag = true;
@@ -29,7 +29,7 @@ import ProducrService from './services/ProductService'
         this.addFlag=false;
       },
       getProducts(){
-        ProducrService.getProducts().then((response) => this.products=response.data);
+        ProducrService.getProducts(this.selectedDate).then((response) => this.products=response.data);
       }
     },
     components:{
@@ -51,8 +51,8 @@ import ProducrService from './services/ProductService'
           <div className="verticalAlignCenter">
             <p>Введите дату:</p>
           </div>
-          <input type="date" v-model="selectedDate" />
-          <button @click="deleteDate()">Сбросить выбор даты</button>
+          <input type="date" v-model="selectedDate" @input="getProducts()"/>
+          <button @click="deleteDate(); getProducts()" >Сбросить выбор даты</button>
       </div>
       <button className="add" @click="openAddWindow()">Добавить новую запись</button>
       <AddWindow v-show="addFlag" :closeAddWindow="closeAddWindow" :getProducts="getProducts"/>

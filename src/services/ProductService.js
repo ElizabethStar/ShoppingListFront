@@ -3,8 +3,14 @@ import axios from "axios"
 const PRODUCT_API_BASE_URL ='http://localhost:8080/products'
 
 class ProductService{
-    getProducts(){
-        return axios.get(PRODUCT_API_BASE_URL);
+
+
+    getProducts(date){
+        if (date=="")
+        {
+            date="notSelected";
+        }
+        return axios.get(PRODUCT_API_BASE_URL,{params:{selectedDate : date}});
     }
 
     deleteProduct(id){
