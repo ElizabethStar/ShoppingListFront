@@ -1,6 +1,6 @@
 <template>
     <div className="newWindow flexColumn">
-        <input type="text" placeholder="Введите имя" v-model="name"/>
+        <input type="text" placeholder="Введите название" v-model="name"/>
         <input type="number" placeholder="Введите количество" v-model="count"/>
         <input type="number" placeholder="Введите цену" v-model="price">
         <div >
@@ -56,8 +56,17 @@ export default{
             else if (this.count==null){
                 this.errorText='Введите количество';
             }
+            else if (!Number.isInteger(this.count)){
+                this.errorText='Количество должно быть целым числом';
+            }
+            else if (this.count<=0){
+                this.errorText='Количество должно быть больше 0';
+            }
             else if (this.price==null){
                 this.errorText='Введите цену';
+            }
+            else if (this.price<0){
+                this.errorText='Цена не может быть отрицательной';
             }
             else if (this.date==''){
                 this.errorText='Введите дату';
