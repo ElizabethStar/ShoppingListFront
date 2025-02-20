@@ -30,7 +30,7 @@ import Delete from './Delete.vue'
 
             },
             DeleteProduct(){
-                ProducrService.deleteProduct(this.productForDelete.id).then((response) => this.getProducts());;
+                ProducrService.deleteProduct(this.productForDelete.id).then((response) => this.getProducts()).catch(error => {console.error('Ошибка при выполнении запроса: ', error);});
                 this.deleteVisible=false;
                 this.productForDelete=null;
 

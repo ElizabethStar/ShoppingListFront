@@ -79,7 +79,7 @@ export default{
                     "price": this.price,
                     "date": this.date
                 };
-                ProducrService.addProduct(this.product).then((response) => this.getProducts());
+                ProducrService.addProduct(this.product).then((response) => this.getProducts()).catch(error => {console.error('Ошибка при выполнении запроса: ', error);});
                 this.closeAddWindow();
                 this.clearInput();
             }

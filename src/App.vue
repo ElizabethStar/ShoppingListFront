@@ -27,7 +27,8 @@ import ProducrService from './services/ProductService'
         this.addFlag=false;
       },
       getProducts(){
-        ProducrService.getProducts(this.selectedDate).then((response) => {this.totalsum=response.data.total; this.products=response.data.productList});
+        ProducrService.getProducts(this.selectedDate).then((response) => {this.totalsum=response.data.total; this.products=response.data.productList}).catch(error => {
+        console.error('Ошибка при выполнении запроса: ', error);});
       }
     },
     components:{
