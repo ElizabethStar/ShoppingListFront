@@ -39,6 +39,7 @@ button {
 p{
   font-size: large;
   font-weight:bold;
+  word-break: break-word;
 }
 
 button.add{
